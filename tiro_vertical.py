@@ -1,18 +1,21 @@
 # Importación de librerías
 import numpy as np
 import matplotlib.pyplot as plt
-from matplotlib.animation import FuncAnimation
-import math
+from matplotlib.animation import FuncAnimation #Incluye las funciones para crear animaciones
+import math # Libreria estandar de python, la necesitamos para sacar raices cuadradas de manera simple
 
 # Constantes físicas
+# NO MODIFIQUEN LAS CONSTANTES!
 GRAVEDAD_TIERRA = 9.8  # m/s²
 GRAVEDAD_LUNA = 1.625  # m/s²
 
-# --- FUNCIONES DE CÁLCULO FÍSICO ---
+# --- FUNCIONES DE CALCULO FÍSICO ---
+# los def nos permitiran reutulizar codigo
+# y0=altura inicial, v0=velocidad inicial, g=gravedad.
 
 def calcular_altura_maxima(altura_inicial, velocidad_inicial, gravedad):
-    # Si la velocidad inicial es negativa, la altura máxima es la inicial
-    if velocidad_inicial <= 0:
+    # Si la velocidad inicial es negativa, la altura máxima es la inicial MRUA
+    if velocidad_inicial <= 0: 
         return altura_inicial
     # Fórmula: h_max = y0 + (v0²)/(2*g)
     altura_maxima = altura_inicial + (velocidad_inicial**2) / (2 * gravedad)
@@ -53,11 +56,10 @@ def calcular_tiempo_vuelo(altura_inicial, velocidad_inicial, gravedad):
     c = altura_inicial
     
     discriminante = b**2 - 4*a*c
-    
+    # Manejo de casos especiales: g=0, discriminante negativo
     # Si no hay soluciones reales, el objeto nunca cae
     if discriminante < 0:
         return float('inf')
-    
     # Calcular raíces de la ecuación cuadrática
     t1 = (-b + math.sqrt(discriminante)) / (2*a)
     t2 = (-b - math.sqrt(discriminante)) / (2*a)
@@ -72,6 +74,10 @@ def calcular_tiempo_vuelo(altura_inicial, velocidad_inicial, gravedad):
     return max(tiempos)
 
 # --- FUNCIONES DE VISUALIZACIÓN ---
+
+#Función anidada: init() y animate()
+#FuncAnimation para animar frames
+#np.linspace genera tiempos equiespaciados
 
 def animar_tiro_vertical(altura_inicial, velocidad_inicial, gravedad):
     # Calcular tiempo total de vuelo para la animación
