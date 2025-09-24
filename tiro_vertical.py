@@ -92,16 +92,16 @@ def animar_tiro_vertical(altura_inicial, velocidad_inicial, gravedad):
     alturas = [calcular_altura_tiempo(altura_inicial, velocidad_inicial, gravedad, t) for t in tiempos]
     
     # Configurar gráfico
-    fig, ax = plt.subplots()
+    fig, ax = plt.subplots() # fig representa la ventana, ax las coordenadas del plano
     ax.set_xlim(0, 2)  # Rango fijo en X
-    ax.set_ylim(0, max(max(alturas), altura_inicial) * 1.1)  # Rango en Y con margen
-    ax.set_xlabel('Posición X (m)')
-    ax.set_ylabel('Altura (m)')
-    ax.set_title('Animación de Tiro Vertical')
+    ax.set_ylim(0, max(max(alturas), altura_inicial) * 1.1)  # Rango en Y con margen (1.1 le da un margen de 10%)
+    ax.set_xlabel('Posición X (m)') #Etiqueta del grafico en X
+    ax.set_ylabel('Altura (m)')# Mismo funcionamiento para el eje Y
+    ax.set_title('Animación de Tiro Vertical') # Titulo de grafico
     ax.grid(True)
     
     # Crear punto que representa el objeto
-    punto, = ax.plot([1], [altura_inicial], 'ro', markersize=10)
+    punto, = ax.plot([1], [altura_inicial], 'ro', markersize=10) #ax.plot esta en valor 1 por ser tiro vertical
     
     def init():
         # Inicializar animación en posición inicial
@@ -118,7 +118,7 @@ def animar_tiro_vertical(altura_inicial, velocidad_inicial, gravedad):
     anim = FuncAnimation(fig, animate, init_func=init,
                          frames=len(tiempos), interval=50, blit=True)
     
-    plt.show()
+    plt.show() #muestra la animacion en pantañña
 
 def comparar_tierra_luna(altura_inicial, velocidad_inicial):
     # Comparar resultados entre Tierra y Luna
