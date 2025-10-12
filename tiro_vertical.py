@@ -8,8 +8,6 @@ import math # Libreria estandar de python, la necesitamos para sacar raices cuad
 # NO MODIFIQUEN LAS CONSTANTES!
 GRAVEDAD_TIERRA = 9.8  # m/s²
 GRAVEDAD_LUNA = 1.625  # m/s²
-
-# --- FUNCIONES DE CALCULO FÍSICO ---
 # los def nos permitiran reutulizar codigo
 # y0=altura inicial, v0=velocidad inicial, g=gravedad.
 
@@ -17,7 +15,7 @@ def calcular_altura_maxima(altura_inicial, velocidad_inicial, gravedad):
     # Si la velocidad inicial es negativa, la altura máxima es la inicial MRUA
     if velocidad_inicial <= 0: 
         return altura_inicial
-    # Fórmula: h_max = y0 + (v0²)/(2*g)
+    # Formula: h_max = y0 + (v0²)/(2*g)
     altura_maxima = altura_inicial + (velocidad_inicial**2) / (2 * gravedad)
     return altura_maxima
 
@@ -25,17 +23,17 @@ def calcular_tiempo_altura_maxima(velocidad_inicial, gravedad):
     # Si la velocidad inicial es negativa, tiempo máximo es 0
     if velocidad_inicial <= 0:
         return 0.0
-    # Fórmula: t_max = v0 / g (cuando v=0)
+    # Formula: t_max = v0 / g (cuando v=0)
     tiempo_maximo = velocidad_inicial / gravedad
     return tiempo_maximo
 
 def calcular_velocidad_tiempo(velocidad_inicial, gravedad, tiempo):
-    # Fórmula: v(t) = v0 - g*t
+    # Formula: v(t) = v0 - g*t
     velocidad = velocidad_inicial - gravedad * tiempo
     return velocidad
 
 def calcular_altura_tiempo(altura_inicial, velocidad_inicial, gravedad, tiempo):
-    # Fórmula: y(t) = y0 + v0*t - 0.5*g*t²
+    # Formula: y(t) = y0 + v0*t - 0.5*g*t²
     altura = altura_inicial + velocidad_inicial * tiempo - 0.5 * gravedad * tiempo**2
     return altura
 
@@ -72,9 +70,6 @@ def calcular_tiempo_vuelo(altura_inicial, velocidad_inicial, gravedad):
     
     # Devolver el mayor tiempo positivo (impacto después de subir y bajar)
     return max(tiempos)
-
-# --- FUNCIONES DE VISUALIZACIÓN ---
-
 #Función anidada: init() y animate()
 #FuncAnimation para animar frames
 #np.linspace genera tiempos equiespaciados
@@ -160,9 +155,7 @@ def comparar_tierra_luna(altura_inicial, velocidad_inicial):
     if tmax_tierra > 0:
         diff_tiempo = ((tmax_luna - tmax_tierra) / tmax_tierra) * 100
         print(f"El tiempo hasta altura máxima en la Luna es {diff_tiempo:.1f}% mayor que en la Tierra")
-
-# --- FUNCIONES DE INTERFAZ DE USUARIO ---
-
+        
 def obtener_entrada_numerica(mensaje, min_valor=None, max_valor=None):
     # Solicitar y validar entrada numérica del usuario
     while True:
@@ -217,7 +210,7 @@ def main():
         gravedad = obtener_entrada_numerica("Ingrese el valor de la gravedad (m/s²) [>0]: ", 0)
         cuerpo_celeste = f"cuerpo con g={gravedad} m/s²"
     
-    # Realizar cálculos principales
+    # Realizar calculos principales
     altura_maxima = calcular_altura_maxima(altura_inicial, velocidad_inicial, gravedad)
     tiempo_maximo = calcular_tiempo_altura_maxima(velocidad_inicial, gravedad)
     tiempo_vuelo = calcular_tiempo_vuelo(altura_inicial, velocidad_inicial, gravedad)
@@ -247,7 +240,7 @@ def main():
     if opcion in ['1', '2']:
         comparar_tierra_luna(altura_inicial, velocidad_inicial)
     else:
-        # Análisis para gravedad personalizada
+        # Analisis para gravedad personalizada
         print("\n=== REFLEXIÓN ===")
         print(f"Con una gravedad de {gravedad} m/s²:")
         if gravedad < GRAVEDAD_TIERRA:
@@ -259,7 +252,7 @@ def main():
         else:
             print("La gravedad es igual a la terrestre.")
     
-    # Opción de animación
+    # Opcion de animación
     animar = input("\n¿Desea ver una animación del movimiento? (s/n): ").lower()
     if animar == 's':
         print("Generando animación...")
